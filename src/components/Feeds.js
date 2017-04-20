@@ -9,7 +9,7 @@ import {
 
 import { selectable, SelectableContainer, SelectableInput } from './Selectable';
 import Feed from './Feed';
-import Router from '../Router';
+import { Actions } from 'react-native-router-flux';
 
 type TProps = {
   navigator: Object;
@@ -29,7 +29,7 @@ export default class Feeds extends Component {
   state: TState = {
     url: 'http://',
     feeds: [
-      { url: 'http://dailyjs.com/rss', name: 'JS Daily' },
+      { url: 'https://www.buzzfeed.com/index.xml', name: 'Buzzfeed' },
       { url: 'https://blog.callstack.io/feed', name: 'Callstack.io blog' },
       { url: 'http://feeds.bbci.co.uk/news/rss.xml', name: 'BBC - Top Stories' },
     ],
@@ -66,7 +66,7 @@ export default class Feeds extends Component {
             <SelectableFeedItem
               name={feed.name}
               url={feed.url}
-              onPress={() => navigator.push(Router.getRoute('articles', { url: feed.url }))}
+              onPress={() => Actions.articles({url: feed.url})}
               key={feed.url}
             />
           ))}
